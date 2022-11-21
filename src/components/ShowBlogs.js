@@ -8,16 +8,20 @@ export default function ShowBlogs() {
   useEffect(() => {
     const getBlogs = async () => {
       try {
-        const res = await axios.get(
-          'https://jsonplaceholder.typicode.com/posts'
-        );
-        setBlogs(res);
+        // const res = await axios.get(
+        //   'https://jsonplaceholder.typicode.com/posts'
+        // );
+        // console.log(res);
+
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const resBlogs = await res.json();
+        setBlogs(resBlogs);
       } catch (e) {
         alert('Error getting blogs: ' + e);
       }
     };
     getBlogs();
-  }, [blogs]);
+  }, []);
 
   const renderBlogs = blogs.map((blog) => {
     return (
@@ -32,9 +36,11 @@ export default function ShowBlogs() {
   return (
     <Table striped bordered hover>
       <thead>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Content</th>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Content</th>
+        </tr>
       </thead>
       <tbody>{renderBlogs}</tbody>
     </Table>

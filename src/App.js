@@ -11,6 +11,7 @@ export default function App() {
     <Container fluid>
       <BrowserRouter>
         <Navbar />
+        <br />
         <Routes>
           <Route path="/" element={<ShowBlogs />} />
           <Route path="/edit" element={<EditBlog />} />
